@@ -1,8 +1,13 @@
-<label>
-    Name:
-    <input type="text" [formControl]="name">
-  </label>
-
-  <p>
-    Value: {{ name.value }}
-  </p>
+<form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+  
+    <label>
+      Member Id:
+      <input type="text" formControlName="memberId">
+    </label>
+  
+    <label>
+      Provider Id:
+      <input type="text" formControlName="providerId">
+    </label>
+    <button type="submit" [disabled]="!providerForm.valid">Submit</button>
+  </form>
