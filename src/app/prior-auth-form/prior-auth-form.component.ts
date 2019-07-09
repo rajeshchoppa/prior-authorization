@@ -16,6 +16,12 @@ export class PriorAuthFormComponent implements OnInit {
   providerForm = new FormGroup({
     memberId: new FormControl(''),
     providerId: new FormControl(''),
+    lineOfService: new FormControl(''),
+    procedureCodeType:new FormControl(''),
+    procedureCode:new FormControl(''),
+    placeOfService:new FormControl(''),
+    revenueCode:new FormControl(''),
+    diagonosisCodeType: new FormControl('')
   });
 
   onSubmit() {

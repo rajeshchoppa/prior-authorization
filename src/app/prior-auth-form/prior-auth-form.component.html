@@ -9,5 +9,66 @@
       Provider Id:
       <input type="text" formControlName="providerId">
     </label>
+
+    <label>
+      Line Of Service:
+      <select formControlName='lineOfService'>
+        <option value="" disabled>Choose your city</option>
+        <option value="ny">New York</option>
+        <option value="ct">New York1</option>
+        <option value="nj">New York2</option>
+     </select>
+     </label>
+
+     <label>
+      Procedure Code Type:
+      <select formControlName='procedureCodeType'>
+        <option value="" disabled>Choose your code type</option>
+        <option value="pct">pct</option>
+        <option value="pct1">pct1</option>
+        <option value="pct2">pct2</option>
+     </select>
+     </label>
+
+     <label>
+      Procedure Code:
+      <select formControlName='procedureCode'>
+        <option value="" disabled>Choose your code</option>
+        <option value="pc">pc</option>
+        <option value="pc1">pc1</option>
+        <option value="pc2">pc2</option>
+     </select>
+     </label>
+
+     <label>
+      Place Of Service:
+      <select formControlName='placeOfService'>
+        <option value="" disabled>Choose your city</option>
+        <option value="ny">New York</option>
+        <option value="ct">New York1</option>
+        <option value="nj">New York2</option>
+     </select>
+     </label>
+
+     <label>
+      Revenue Code:
+      <select formControlName='revenueCode'>
+        <option value="" disabled>Choose your city</option>
+        <option value="ny">New York</option>
+        <option value="ct">New York1</option>
+        <option value="nj">New York2</option>
+     </select>
+     </label>
+
+     <label>
+      Diagonosis Code Type:
+      <select formControlName='diagonosisCodeType'>
+        <option value="" disabled>Choose your city</option>
+        <option value="ny">New York</option>
+        <option value="ct">New York1</option>
+        <option value="nj">New York2</option>
+     </select>
+     </label>
+
     <button type="submit" [disabled]="!providerForm.valid">Submit</button>
   </form>
