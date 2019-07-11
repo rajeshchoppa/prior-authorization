@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PriorAuthFormComponent } from './prior-auth-form/prior-auth-form.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     routing,
     ReactiveFormsModule,
     RouterModule

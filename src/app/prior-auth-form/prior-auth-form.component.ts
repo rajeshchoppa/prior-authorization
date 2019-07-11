@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SearchCriteria } from './search-criteria';
+import { ClientService } from '../client.service';
 
 @Component({
   selector: 'app-prior-auth-form',
@@ -8,7 +9,7 @@ import { SearchCriteria } from './search-criteria';
   styleUrls: ['./prior-auth-form.component.css']
 })
 export class PriorAuthFormComponent implements OnInit {
-    constructor() { }
+      constructor(private clientService:ClientService) { }
 
   ngOnInit() {
   }
@@ -27,5 +28,11 @@ export class PriorAuthFormComponent implements OnInit {
   onSubmit() {
   this.searchCriteria=<SearchCriteria>this.providerForm.value;
     console.warn(this.searchCriteria);
+  }
+  showConfig() {
+    this.clientService.getConfig()
+      .subscribe((data) =>{
+       console.warn(data);
+      });
   }
 }
