@@ -11,35 +11,32 @@ import { Response1 } from './response1';
 })
 export class PriorAuthFormComponent implements OnInit {
       constructor(private clientService:ClientService) { }
-     ngOnInit() { }
+     
   searchCriteria:SearchCriteria=new SearchCriteria();
-
+  ngOnInit() { }
   //result binding
   response1:Response1=null;
-  diagnosisCd: Map<string,string>=new Map();
-  procedureCode: Map<string,string>=new Map();
+  diagnosisCd: string="";
+  procedureCode:string="";
 
   providerForm = new FormGroup({
-    'memberID': new FormControl('',Validators.required),
+    memberID: new FormControl('',Validators.required),
     providerId: new FormControl(''),
     lineOfService: new FormControl(''),
     procedureCode:new FormControl(''),
-    diagnosisCodes:new FormControl([])
+    diagnosisCode:new FormControl('')
      });
 
   onSubmit() {
     this.searchCriteria=<SearchCriteria>this.providerForm.value;
-    if(this.searchCriteria.memberID!=null){
-
-    }
- 
-  this.searchCriteria.diagnosisCodes=[this.providerForm.value.diagnosisCodes];
+   
+ // this.searchCriteria.diagnosisCodes=[this.providerForm.value.diagnosisCodes];
    // console.warn(this.searchCriteria);
     this.clientService.postData(this.searchCriteria)
     .subscribe((data) =>{
       this.response1=<Response1>data;
-      this.diagnosisCd=this.response1.diagnosisCodes;
-      this.procedureCode=this.response1.procedureCode;
+      this.diagnosisCd=this.response1.prediction.diagnosisCode;
+      this.procedureCode=this.response1.prediction.procedureCode;
       
      console.warn(this.response1);
     });

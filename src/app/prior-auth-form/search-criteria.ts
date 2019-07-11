@@ -3,5 +3,5 @@ export class SearchCriteria {
     public providerId: number;
     public lineOfService: string;
     public procedureCode: string;
-    public diagnosisCodes: string[];
+    public diagnosisCode: string;
 }

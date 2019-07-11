@@ -21,7 +21,7 @@
       </div>
   <div class="row">
     <div class="col">
-      <input type="text" formControlName="diagnosisCodes" maxlength="10" placeholder="Diagonosis Codes">
+      <input type="text" formControlName="diagnosisCode" maxlength="10" placeholder="Diagonosis Codes">
     </div>
   </div>
   
@@ -52,20 +52,7 @@
           </tr>
           </thead>
           <tbody>
-              <ul>
-                  <li *ngFor="let item of this.diagnosisCd | keyvalue">
-                      <tr>
-                          <th scope="row">  <ul>
-                              <li *ngFor="let item of this.procedureCode | keyvalue">
-                                {{item.key}}: {{item.value}}
-                              </li>
-                            </ul></th>
-                          <td> {{item.key}}: {{item.value}}</td>
-                          <td>100%</td>
-                          <td>yes</td>
-                        </tr>
-                  </li>
-                </ul>
+              
         
           </tbody>
         </table>
@@ -79,7 +66,13 @@
     <div class="row" *ngIf= "this.response1!=null">
       <div class="col">
         
-        <label class="priorAuthLabel">Suggested Additional Services</label>
+        <label class="priorAuthLabel">Member Coverage for Inquired Procedure and Diagonis Code</label>
+        <span>
+            Coverage for Procedure Code {{response1.prediction.procedureCode}} and Diagnosis Code {{response1.prediction.diagnosisCode}} 
+            combination is {{response1.prediction.covered}} ----- {{response1.prediction.preAuthRequired}}   
+ 
+         </span>
+      
       </div>
     </div>
   </div>
