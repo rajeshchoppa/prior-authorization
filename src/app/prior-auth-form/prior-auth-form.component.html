@@ -1,79 +1,103 @@
 <div class="container">
-    <label class="priorAuthLabel"> Provider Input</label>
-  
-    <form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
-      <div class="row">
-        <div class="col">
-            <input id ="memberID" type="text" formControlName="memberID" maxlength="10" placeholder="Member ID" required>
-        </div>
-       <div class="col">
-          <input type="text" formControlName="providerId" maxlength="10" placeholder="Provider ID">
-        </div>
+  <label class="priorAuthLabel"> Provider Input</label>
+  <form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col">
+        <input id="memberID" type="text" formControlName="memberID" maxlength="10" placeholder="Member ID" required>
       </div>
-      <div class="row">
-        <div class="col">
-          <input type="text" formControlName="lineOfService" maxlength="10" placeholder="Line of Service">
-        </div>
-        <div class="col">
-          <input type="text" formControlName="procedureCode" maxlength="10" placeholder="Procedure Code">
-        </div>
-  
+      <div class="col">
+        <input type="text" formControlName="providerId" maxlength="10" placeholder="Provider ID">
       </div>
-  <div class="row">
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="text" formControlName="lineOfService" maxlength="10" placeholder="Line of Service">
+      </div>
+      <div class="col">
+        <input id="procedureCode" type="text" formControlName="procedureCode" maxlength="10"
+               placeholder="Procedure Code" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input id="diagnosisCode" type="text" formControlName="diagnosisCode" maxlength="10"
+               placeholder="Diagonosis Code" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-lg-2">
+        <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!providerForm.valid">Submit
+        </button>
+      </div><!-- /col -->
+    </div><!-- /row -->
+  </form>
+  <br>
+  <br>
+  <br>
+  <div class="row" *ngIf="this.response1!=null">
     <div class="col">
-      <input type="text" formControlName="diagnosisCode" maxlength="10" placeholder="Diagonosis Codes">
+      <label class="priorAuthLabel">Benefit Coverage Details</label>
+      <table class="table">
+        <thead>
+        <tr>
+          <th class="tableTh" scope="col">Procedure Code</th>
+          <th class="tableTh" scope="col">Diagonis Code</th>
+          <th class="tableTh" scope="col">Covered</th>
+          <th class="tableTh" scope="col">Pre Auth Required</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th class="tableTdRow" scope="row">{{response1.prediction.procedureCode}}</th>
+          <td class="tableTd">{{response1.prediction.diagnosisCode}}</td>
+          <td class="tableTd">
+            <button class="btn btn-static btn-primary btn-lg btn-block btn-danger"
+                    *ngIf="!response1.prediction.covered">NO
+            </button>
+            <button class="btn btn-static btn-primary btn-lg btn-block btn-success"
+                    *ngIf="response1.prediction.covered">YES
+            </button>
+          </td>
+          <td class="tableTd">
+            <button class="btn btn-static btn-primary btn-lg btn-block btn-success"
+                    *ngIf="!response1.prediction.preAuthRequired">NO
+            </button>
+            <button class="btn btn-static btn-primary btn-lg btn-block btn-warning"
+                    *ngIf="response1.prediction.preAuthRequired">YES
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
-      <div class="row">
-        <div class="col-md-4 col-lg-2">
-  
-          <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!providerForm.valid">Submit
-          </button>
-        </div><!-- /col -->
-      </div><!-- /row -->
-  
-  
-    </form>
-    <br>
-    <br>
-    <br>
-  
-    <div class="row" *ngIf= "this.response1!=null">
-      <div class="col">
-          <label class="priorAuthLabel"> Member Coverage for Inquired Procedure and Diagonis Code</label>
-          <table class="table">
-          <thead>
-          <tr>
-            <th scope="col">Procedure Code</th>
-            <th scope="col">Diagonis Code</th>
-            <th scope="col">Coverage</th>
-            <th scope="col">Pre Auth Required</th>
-          </tr>
-          </thead>
-          <tbody>
-              
-        
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-
-    <br>
-    <br>
-    <br>
-    <div class="row" *ngIf= "this.response1!=null">
-      <div class="col">
-        
-        <label class="priorAuthLabel">Member Coverage for Inquired Procedure and Diagonis Code</label>
-        <span>
-            Coverage for Procedure Code {{response1.prediction.procedureCode}} and Diagnosis Code {{response1.prediction.diagnosisCode}} 
-            combination is {{response1.prediction.covered}} ----- {{response1.prediction.preAuthRequired}}   
- 
-         </span>
-      
-      </div>
+  <br>
+  <br>
+  <br>
+  <div class="row" *ngIf="this.response1!=null">
+    <div class="col">
+      <label class="priorAuthLabel">Average Payment Responsibility</label>
+      <table class="table">
+        <thead>
+        <tr>
+          <th class="tableTh" scope="col">Insurer Responsibility %</th>
+          <th class="tableTh" scope="col">Member Responsibility %</th>
+          <th class="tableTh" scope="col">Provider Responsibility %</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th class="tableTdRow" scope="row">{{response1.prediction.insurerMedian}}</th>
+          <td class="tableTd">
+            {{response1.prediction.memberMedian}}
+          </td>
+          <td class="tableTd">
+            {{response1.prediction.providerMedian}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
+</div>

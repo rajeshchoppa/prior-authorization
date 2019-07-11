@@ -11,25 +11,28 @@ import { Response1 } from './response1';
 })
 export class PriorAuthFormComponent implements OnInit {
       constructor(private clientService:ClientService) { }
-     
+
   searchCriteria:SearchCriteria=new SearchCriteria();
   ngOnInit() { }
   //result binding
   response1:Response1=null;
   diagnosisCd: string="";
   procedureCode:string="";
+  insurerMedian:number;
+  memberMedian:number;
+  providerMedian:number;
 
   providerForm = new FormGroup({
     memberID: new FormControl('',Validators.required),
     providerId: new FormControl(''),
     lineOfService: new FormControl(''),
-    procedureCode:new FormControl(''),
-    diagnosisCode:new FormControl('')
+    procedureCode:new FormControl('',Validators.required),
+    diagnosisCode:new FormControl('',Validators.required)
      });
 
   onSubmit() {
     this.searchCriteria=<SearchCriteria>this.providerForm.value;
-   
+
  // this.searchCriteria.diagnosisCodes=[this.providerForm.value.diagnosisCodes];
    // console.warn(this.searchCriteria);
     this.clientService.postData(this.searchCriteria)
@@ -37,8 +40,10 @@ export class PriorAuthFormComponent implements OnInit {
       this.response1=<Response1>data;
       this.diagnosisCd=this.response1.prediction.diagnosisCode;
       this.procedureCode=this.response1.prediction.procedureCode;
-      
-     console.warn(this.response1);
+      this.memberMedian=this.response1.prediction.memberMedian;
+      this.providerMedian=this.response1.prediction.providerMedian;
+      this.insurerMedian=this.response1.prediction.insurerMedian;
+      console.warn(this.response1);
     });
   }
 

@@ -6,4 +6,7 @@ export class PredictionUnit  {
     public insurerPercentiles: Map<number,number>;
     public memberPercentiles: Map<number,number>;
     public providerPercentiles: Map<number,number>;
+    public insurerMedian:number;
+    public memberMedian:number;
+    public providerMedian:number;
 }

@@ -25,3 +25,17 @@ input{
     th.heading {
         color: darkgoldenrod;
     }
+    span#message {
+        color: aquamarine;
+        font-size: initial;
+    }
+    th.tableTh {
+        font-size: 16px;
+        color: coral;
+            width: 25%;
+    }
+    td.tableTd,.tableTdRow {
+            font-size: 16px;
+            color: dodgerblue;
+
+    }
