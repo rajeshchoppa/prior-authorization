@@ -1,11 +1,7 @@
 export class SearchCriteria {
-    public memberId: string;
-    public providerId: string;
+    public memberID: number;
+    public providerId: number;
     public lineOfService: string;
-    public procedureCodeType: string;
     public procedureCode: string;
-    public placeOfService: string;
-    public revenueCode: string;
-    public diagonosisCodeType:string;
-
+    public diagnosisCodes: string[];
 }

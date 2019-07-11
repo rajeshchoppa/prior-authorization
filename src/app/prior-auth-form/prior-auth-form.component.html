@@ -1,76 +1,86 @@
-<form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+<div class="container">
+    <label class="priorAuthLabel"> Provider Input</label>
   
-    <label>
-      Member Id:
-      <input type="text" formControlName="memberId">
-    </label>
+    <form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+            <input id ="memberID" type="text" formControlName="memberID" maxlength="10" placeholder="Member ID" required>
+        </div>
+       <div class="col">
+          <input type="text" formControlName="providerId" maxlength="10" placeholder="Provider ID">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" formControlName="lineOfService" maxlength="10" placeholder="Line of Service">
+        </div>
+        <div class="col">
+          <input type="text" formControlName="procedureCode" maxlength="10" placeholder="Procedure Code">
+        </div>
   
-    <label>
-      Provider Id:
-      <input type="text" formControlName="providerId">
-    </label>
+      </div>
+  <div class="row">
+    <div class="col">
+      <input type="text" formControlName="diagnosisCodes" maxlength="10" placeholder="Diagonosis Codes">
+    </div>
+  </div>
+  
+      <div class="row">
+        <div class="col-md-4 col-lg-2">
+  
+          <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!providerForm.valid">Submit
+          </button>
+        </div><!-- /col -->
+      </div><!-- /row -->
+  
+  
+    </form>
+    <br>
+    <br>
+    <br>
+  
+    <div class="row" *ngIf= "this.response1!=null">
+      <div class="col">
+          <label class="priorAuthLabel"> Member Coverage for Inquired Procedure and Diagonis Code</label>
+          <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Procedure Code</th>
+            <th scope="col">Diagonis Code</th>
+            <th scope="col">Coverage</th>
+            <th scope="col">Pre Auth Required</th>
+          </tr>
+          </thead>
+          <tbody>
+              <ul>
+                  <li *ngFor="let item of this.diagnosisCd | keyvalue">
+                      <tr>
+                          <th scope="row">  <ul>
+                              <li *ngFor="let item of this.procedureCode | keyvalue">
+                                {{item.key}}: {{item.value}}
+                              </li>
+                            </ul></th>
+                          <td> {{item.key}}: {{item.value}}</td>
+                          <td>100%</td>
+                          <td>yes</td>
+                        </tr>
+                  </li>
+                </ul>
+        
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-    <label>
-      Line Of Service:
-      <select formControlName='lineOfService'>
-        <option value="" disabled>Choose your city</option>
-        <option value="ny">New York</option>
-        <option value="ct">New York1</option>
-        <option value="nj">New York2</option>
-     </select>
-     </label>
 
-     <label>
-      Procedure Code Type:
-      <select formControlName='procedureCodeType'>
-        <option value="" disabled>Choose your code type</option>
-        <option value="pct">pct</option>
-        <option value="pct1">pct1</option>
-        <option value="pct2">pct2</option>
-     </select>
-     </label>
-
-     <label>
-      Procedure Code:
-      <select formControlName='procedureCode'>
-        <option value="" disabled>Choose your code</option>
-        <option value="pc">pc</option>
-        <option value="pc1">pc1</option>
-        <option value="pc2">pc2</option>
-     </select>
-     </label>
-
-     <label>
-      Place Of Service:
-      <select formControlName='placeOfService'>
-        <option value="" disabled>Choose your city</option>
-        <option value="ny">New York</option>
-        <option value="ct">New York1</option>
-        <option value="nj">New York2</option>
-     </select>
-     </label>
-
-     <label>
-      Revenue Code:
-      <select formControlName='revenueCode'>
-        <option value="" disabled>Choose your city</option>
-        <option value="ny">New York</option>
-        <option value="ct">New York1</option>
-        <option value="nj">New York2</option>
-     </select>
-     </label>
-
-     <label>
-      Diagonosis Code Type:
-      <select formControlName='diagonosisCodeType'>
-        <option value="" disabled>Choose your city</option>
-        <option value="ny">New York</option>
-        <option value="ct">New York1</option>
-        <option value="nj">New York2</option>
-     </select>
-     </label>
-
-    <button type="submit" [disabled]="!providerForm.valid">Submit</button>
-
-    <button (click)="showConfig()">GET /products</button>
-  </form>
+    <br>
+    <br>
+    <br>
+    <div class="row" *ngIf= "this.response1!=null">
+      <div class="col">
+        
+        <label class="priorAuthLabel">Suggested Additional Services</label>
+      </div>
+    </div>
+  </div>
+  
