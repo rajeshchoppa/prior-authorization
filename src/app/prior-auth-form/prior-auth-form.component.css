@@ -39,3 +39,7 @@ input{
             color: dodgerblue;
 
     }
+    label.error {
+        color: #ff3838;
+        font-size: 15px;
+    }

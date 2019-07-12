@@ -13,7 +13,10 @@ export class PriorAuthFormComponent implements OnInit {
       constructor(private clientService:ClientService) { }
 
   searchCriteria:SearchCriteria=new SearchCriteria();
-  ngOnInit() { }
+  ngOnInit() {
+   this.response1=null;
+   this.procedureCode=null;
+    }
   //result binding
   response1:Response1=null;
   diagnosisCd: string="";
@@ -21,6 +24,7 @@ export class PriorAuthFormComponent implements OnInit {
   insurerMedian:number;
   memberMedian:number;
   providerMedian:number;
+  isFailed: boolean = false;
 
   providerForm = new FormGroup({
     memberID: new FormControl('',Validators.required),
@@ -31,8 +35,10 @@ export class PriorAuthFormComponent implements OnInit {
      });
 
   onSubmit() {
-    this.searchCriteria=<SearchCriteria>this.providerForm.value;
 
+this.response1=null;  this.procedureCode=null;
+    this.searchCriteria=<SearchCriteria>this.providerForm.value;
+    this.isFailed=false;
  // this.searchCriteria.diagnosisCodes=[this.providerForm.value.diagnosisCodes];
    // console.warn(this.searchCriteria);
     this.clientService.postData(this.searchCriteria)
@@ -44,7 +50,10 @@ export class PriorAuthFormComponent implements OnInit {
       this.providerMedian=this.response1.prediction.providerMedian;
       this.insurerMedian=this.response1.prediction.insurerMedian;
       console.warn(this.response1);
-    });
+    },
+       (error)=>{
+         this.isFailed=true;
+            });
   }
 
   showConfig() {

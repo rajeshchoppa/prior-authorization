@@ -35,7 +35,15 @@
   <br>
   <br>
   <br>
-  <div class="row" *ngIf="this.response1!=null">
+  <div class="row" *ngIf="isFailed">
+    <div class="col">
+      <label class="error">Pre-Determination Data not available for passed input.</label>
+      </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="row" *ngIf="this.response1!=null && !isFailed && null!= response1.prediction">
     <div class="col">
       <label class="priorAuthLabel">Benefit Coverage Details</label>
       <table class="table">
@@ -75,7 +83,7 @@
   <br>
   <br>
   <br>
-  <div class="row" *ngIf="this.response1!=null">
+  <div class="row" *ngIf="this.response1!=null && !isFailed && null!= response1.prediction">
     <div class="col">
       <label class="priorAuthLabel">Average Payment Responsibility</label>
       <table class="table">
